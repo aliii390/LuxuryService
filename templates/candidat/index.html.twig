@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CandidatController!{% endblock %}
+
+{% block body %}
+    <h1>Candidat index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>FirstName</th>
+                <th>LastName</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for test in candidats %}
+            <tr>
+                <td>{{ test.id }}</td>
+                <td>{{ test.firstName }}</td>
+                <td>{{ test.lastName }}</td>
+               
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="15">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
+
+
+
+{# pour l'instans sa marche sa recuper rien mais j'affiche bien firstname et lastname a voir demain  #}
