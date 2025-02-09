@@ -39,8 +39,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private bool $isVerified = false;
 
-    #[ORM\OneToOne(mappedBy: 'user', cascade: ['persist', 'remove'])]
-    private ?Candidat $candidat = null;
+   
+
 
     public function getId(): ?int
     {
@@ -141,25 +141,5 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getCandidat(): ?Candidat
-    {
-        return $this->candidat;
-    }
-
-    public function setCandidat(?Candidat $candidat): static
-    {
-        // unset the owning side of the relation if necessary
-        if ($candidat === null && $this->candidat !== null) {
-            $this->candidat->setUser(null);
-        }
-
-        // set the owning side of the relation if necessary
-        if ($candidat !== null && $candidat->getUser() !== $this) {
-            $candidat->setUser($this);
-        }
-
-        $this->candidat = $candidat;
-
-        return $this;
-    }
+  
 }
