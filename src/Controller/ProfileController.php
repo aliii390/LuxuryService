@@ -40,8 +40,10 @@ final class ProfileController extends AbstractController
             // if ($candidat->getCreatedAt() === null) {
             //     $candidat->setCreatedAt(new \DateTimeImmutable());
             // }
+            
+            // l'erreur vien de la je suis le goat j'ai trouver 
 
-            $candidat->setUpdatedAt(new \DateTimeImmutable());
+            // $candidat->setUpdatedAt(new \DateTimeImmutable());
             $entityManager->persist($candidat);
             $entityManager->flush();
             $this->addFlash('success', "Your profile has been updated!");

@@ -77,18 +77,17 @@
 					<div class="clearfix visible-sm"></div>
 					<div class="col-xs-12 col-sm-6 col-md-4">
 						<div class="input-field">
-							<input type="text" class="form-control" name="first_name" id="first_name" value="" required>
 							 {{ form_widget(candidatForm.firstname) }}
                             {{ form_label(candidatForm.firstname, 'First name') }}
 						</div>
 					</div>
 					<div class="col-xs-12 col-sm-6 col-md-4">
 						<div class="input-field">
-							   {{ form_widget(candidatForm.lastname) }}
+						{{ form_widget(candidatForm.lastname) }}
                         {{ form_label(candidatForm.lastname, 'Last name') }}
 						</div>
 					</div>
-					{# <div class="col-xs-12 col-sm-6 col-md-4">
+					<div class="col-xs-12 col-sm-6 col-md-4">
 						<div class="input-field">
 							<input required="required" id="current_location" name="current_location" type="text" value="">
 							<label for="current_location">Current location</label>
@@ -100,7 +99,7 @@
 							<label for="address">Address</label>
 						</div>
 					</div>
-				</div> #}
+				</div> 
 				{# <div class="row">
 					<div class="col-xs-12 col-sm-6 col-md-4">
 						<div class="file-field input-field" style="margin-top: 32px;">
@@ -149,7 +148,7 @@
 							</div>
 						</div>
 					</div>
-				</div> #}
+				</div>
 				<div class="row mt-40">
 					<h3 class="text-extrabold">Your professional profile</h3>
 					<div class="col-xs-12 col-sm-6">

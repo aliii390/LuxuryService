@@ -23,11 +23,17 @@ class Candidat
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?\DateTimeImmutable $createdAt = null;
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $ville = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?\DateTimeImmutable $deletedAt = null;
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $address = null;
+
+    // #[ORM\Column(nullable: true)]
+    // private ?\DateTimeImmutable $createdAt = null;
+
+    // #[ORM\Column(nullable: true)]
+    // private ?\DateTimeImmutable $deletedAt = null;
 
    
 
@@ -72,26 +78,50 @@ class Candidat
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeImmutable
+    // public function getCreatedAt(): ?\DateTimeImmutable
+    // {
+    //     return $this->createdAt;
+    // }
+
+    // public function setCreatedAt(?\DateTimeImmutable $createdAt): static
+    // {
+    //     $this->createdAt = $createdAt;
+
+    //     return $this;
+    // }
+
+    // public function getDeletedAt(): ?\DateTimeImmutable
+    // {
+    //     return $this->deletedAt;
+    // }
+
+    // public function setDeletedAt(?\DateTimeImmutable $deletedAt): static
+    // {
+    //     $this->deletedAt = $deletedAt;
+
+    //     return $this;
+    // }
+
+    public function getVille(): ?string
     {
-        return $this->createdAt;
+        return $this->ville;
     }
 
-    public function setCreatedAt(?\DateTimeImmutable $createdAt): static
+    public function setVille(?string $ville): static
     {
-        $this->createdAt = $createdAt;
+        $this->ville = $ville;
 
         return $this;
     }
 
-    public function getDeletedAt(): ?\DateTimeImmutable
+    public function getAddress(): ?string
     {
-        return $this->deletedAt;
+        return $this->address;
     }
 
-    public function setDeletedAt(?\DateTimeImmutable $deletedAt): static
+    public function setAddress(?string $address): static
     {
-        $this->deletedAt = $deletedAt;
+        $this->address = $address;
 
         return $this;
     }
@@ -101,4 +131,4 @@ class Candidat
 
 
 
-// demain faut regler cette erreur :   An exception occurred while executing a query: SQLSTATE[42S22]: Column not found: 1054 Champ 't0.updated_at' inconnu dans field list
+// je peut faire de migr pour rajouter ville et adress a cause de user_id je comprend pas 
