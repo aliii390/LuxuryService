@@ -5,6 +5,11 @@
 		select {
 			display: block !important;
 		}
+
+		.tp-caption.boxshadow,
+		.boxshadow{
+			box-shadow: none!important;
+		}
 	</style>
 {% endblock %}
 
@@ -64,50 +69,58 @@
 				<div class="row">
 					<h3 class="text-extrabold">Your personal informations</h3>
 					<div class="col-xs-12 col-sm-6 col-md-4">
+					{# gender #}
 						<div class="input-field">
-							{# <select id="gender" name="gender">
-								<option value="">Choose an option...</option>
-								<option value="male">Male</option>
-								<option value="female" selected="selected">Female</option>
-								<option value="transgender">Transgender</option>
-							</select>
-							<label for="gender" class="active">Gender</label> #}
+							{# <select id="gender" name="gender"> #}
+									{{ form_widget(candidatForm.gender) }}
+                        		{{ form_label(candidatForm.gender, 'Gender') }}
+							{# </select> #}
+							<label for="gender" class="active">Gender</label>
 						</div>
 					</div>
 					<div class="clearfix visible-sm"></div>
+					{# firstname #}
 					<div class="col-xs-12 col-sm-6 col-md-4">
 						<div class="input-field">
 							 {{ form_widget(candidatForm.firstname) }}
                             {{ form_label(candidatForm.firstname, 'First name') }}
 						</div>
 					</div>
+					{# lastname #}
 					<div class="col-xs-12 col-sm-6 col-md-4">
 						<div class="input-field">
 						{{ form_widget(candidatForm.lastname) }}
                         {{ form_label(candidatForm.lastname, 'Last name') }}
 						</div>
 					</div>
+					{# ville #}
 					<div class="col-xs-12 col-sm-6 col-md-4">
 						<div class="input-field">
-							<input required="required" id="current_location" name="current_location" type="text" value="">
-							<label for="current_location">Current location</label>
+							{{ form_widget(candidatForm.ville) }}
+                        {{ form_label(candidatForm.ville, 'Current') }}
 						</div>
 					</div>
+					{# address #}
 					<div class="col-xs-12 col-sm-8">
 						<div class="input-field">
-							<input id="address" name="address" type="text" value="">
-							<label for="address">Address</label>
+							{{ form_widget(candidatForm.address) }}
+                        	{{ form_label(candidatForm.address, 'address') }}
 						</div>
 					</div>
 				</div> 
-				{# <div class="row">
+				<div class="row">
 					<div class="col-xs-12 col-sm-6 col-md-4">
 						<div class="file-field input-field" style="margin-top: 32px;">
+						{# photo de profil #}
 							<div class="btn btn-lg primary waves-effect waves-light">
 								<span>
 									<i class="material-icons">insert_photo</i>
 									Photo</span>
-								<input id="photo" size="20000000" accept=".pdf,.jpg,.doc,.docx,.png,.gif" name="photo" type="file">
+								{# <input id="photo" size="20000000" accept=".pdf,.jpg,.doc,.docx,.png,.gif" name="photo" type="file"> #}
+									{{ form_widget(candidatForm.profilePictureFile) }}
+                        				{{ form_label(candidatForm.profilePictureFile, ) }}
+
+										{# finir l'upload de photo #}
 							</div>
 
 							<div class="existing-file">
@@ -119,36 +132,39 @@
 								<input class="file-path validate" type="text" placeholder="Upload your ID photo" readonly>
 							</div>
 						</div>
-					</div> #}
-					{# <div class="col-xs-12 col-sm-6 col-md-8">
+					</div>
+
+					 <div class="col-xs-12 col-sm-6 col-md-8">
 						<div class="row">
 							<div class="col-xs-12 col-sm-6">
+
 								<div class="input-field">
-									<input id="country" name="country" type="text" value="">
-									<label for="country">Country</label>
+									{{ form_widget(candidatForm.country) }}
+                        				{{ form_label(candidatForm.country, 'Country') }}
 								</div>
 							</div>
 							<div class="col-xs-12 col-sm-6">
 								<div class="input-field">
-									<input id="nationality" name="nationality" type="text" value="">
-									<label for="nationality">Nationality</label>
+									{{ form_widget(candidatForm.nationality) }}
+                        			{{ form_label(candidatForm.nationality, 'Nationality') }}
 								</div>
 							</div>
 							<div class="col-xs-12 col-sm-6">
 								<div class="input-field">
-									<input class="datepicker" id="birth_date" name="birth_date" type="text" value="">
-									<label for="birth_date">Birthdate</label>
+										{{ form_widget(candidatForm.Birthdate) }}
+                        				{{ form_label(candidatForm.Birthdate, 'Birthdate') }}
 								</div>
 							</div>
 							<div class="col-xs-12 col-sm-6">
 								<div class="input-field">
-									<input id="birth_place" name="birth_place" type="text" value="">
-									<label for="birth_place">Birthplace</label>
+								{{ form_widget(candidatForm.Birthplace) }}
+                        		{{ form_label(candidatForm.Birthplace, 'Birthplace') }}
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
+				
 				<div class="row mt-40">
 					<h3 class="text-extrabold">Your professional profile</h3>
 					<div class="col-xs-12 col-sm-6">
@@ -190,7 +206,7 @@
 							</div>
 
 						</div>
-					</div> #}
+					</div> 
 
 					<div class="col-xs-12 col-sm-6">
 						<div class="col-xs-12 col-sm-12">
@@ -202,25 +218,22 @@
 								<label for="job_sector" class="active">Interest in job sector</label>
 							</div>
 						</div>
-						{# <div class="col-xs-12 col-sm-12">
+
+							{#experience  #}
+
+						<div class="col-xs-12 col-sm-12">
 							<div class="input-field">
-								<select id="experience" required="required" name="experience">
-									<option value="">Choose</option>
-									<option value="3m">0 - 6 month</option>
-									<option value="6m">6 month - 1 year</option>
-									<option value="1y">1 - 2 years</option>
-									<option value="2y">2+ years</option>
-									<option value="5y" selected="selected">5+ years</option>
-									<option value="10y">10+ years</option>
-								</select>
-								<label for="experience" class="active">Experience</label>
+								{# <select id="experience" required="required" name="experience"> #}
+									{{ form_widget(candidatForm.experience) }}
+                        		{{ form_label(candidatForm.experience, 'Experience' ) }}
+								{# </select> #}
+								
 							</div>
-						</div> #}
+						</div>
 					</div>
 					<div class="col-xs-12 col-sm-12">
-						<div class="input-field">
-							<textarea class="materialize-textarea" id="description" name="description" cols="50" rows="10"></textarea>
-							<label for="description">Short description for your profile, as well as more personnal informations (e.g. your hobbies/interests ). You can also paste any link you want.</label>
+					{{ form_label(candidatForm.descritpion, 'Short description for your profile, as well as more personnal informations (e.g. your hobbies/interests ). You can also paste any link you want.') }}
+					{{ form_widget(candidatForm.descritpion) }}
 						</div>
 					</div>
 				</div>
@@ -272,7 +285,7 @@
 				</div>
 
 			</div>
-		</section> #}
+		</section>  #}
 		<button type="submit" class="btn btn-block btn-lg gradient secondary waves-effect waves-light">
 							<span>
 								<strong>UPDATE</strong>
@@ -283,4 +296,3 @@
 
 
 
-{#  {{ form_start(candidateForm, {'attr': {'id': 'candidateForm', 'role': 'form', 'enctype': 'multipart/form-data'}}) }}  pour démarrer le formulaire  #}

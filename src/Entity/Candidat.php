@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\CandidatRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: CandidatRepository::class)]
@@ -28,6 +30,40 @@ class Candidat
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $address = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $birthdate = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $birthplace = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $country = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $nationality = null;
+
+    #[ORM\ManyToOne(inversedBy: 'candidats')]
+    private ?Gender $gender = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $experience = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?\DateTimeImmutable $createdAt = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?\DateTimeImmutable $updatedAt = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $descritpion = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $profilePictureFile = null;
+
+    
+  
+
 
     // #[ORM\Column(nullable: true)]
     // private ?\DateTimeImmutable $createdAt = null;
@@ -78,29 +114,7 @@ class Candidat
         return $this;
     }
 
-    // public function getCreatedAt(): ?\DateTimeImmutable
-    // {
-    //     return $this->createdAt;
-    // }
-
-    // public function setCreatedAt(?\DateTimeImmutable $createdAt): static
-    // {
-    //     $this->createdAt = $createdAt;
-
-    //     return $this;
-    // }
-
-    // public function getDeletedAt(): ?\DateTimeImmutable
-    // {
-    //     return $this->deletedAt;
-    // }
-
-    // public function setDeletedAt(?\DateTimeImmutable $deletedAt): static
-    // {
-    //     $this->deletedAt = $deletedAt;
-
-    //     return $this;
-    // }
+    
 
     public function getVille(): ?string
     {
@@ -125,6 +139,128 @@ class Candidat
 
         return $this;
     }
+
+    public function getBirthdate(): ?string
+    {
+        return $this->birthdate;
+    }
+
+    public function setBirthdate(?string $birthdate): static
+    {
+        $this->birthdate = $birthdate;
+
+        return $this;
+    }
+
+    public function getBirthplace(): ?string
+    {
+        return $this->birthplace;
+    }
+
+    public function setBirthplace(?string $birthplace): static
+    {
+        $this->birthplace = $birthplace;
+
+        return $this;
+    }
+
+    public function getCountry(): ?string
+    {
+        return $this->country;
+    }
+
+    public function setCountry(?string $country): static
+    {
+        $this->country = $country;
+
+        return $this;
+    }
+
+    public function getNationality(): ?string
+    {
+        return $this->nationality;
+    }
+
+    public function setNationality(?string $nationality): static
+    {
+        $this->nationality = $nationality;
+
+        return $this;
+    }
+
+    public function getGender(): ?Gender
+    {
+        return $this->gender;
+    }
+
+    public function setGender(?Gender $gender): static
+    {
+        $this->gender = $gender;
+
+        return $this;
+    }
+
+    public function getExperience(): ?string
+    {
+        return $this->experience;
+    }
+
+    public function setExperience(?string $experience): static
+    {
+        $this->experience = $experience;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeImmutable
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeImmutable $createdAt): static
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeImmutable
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(\DateTimeImmutable $updatedAt): static
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function getDescritpion(): ?string
+    {
+        return $this->descritpion;
+    }
+
+    public function setDescritpion(?string $descritpion): static
+    {
+        $this->descritpion = $descritpion;
+
+        return $this;
+    }
+
+    public function getProfilePictureFile(): ?string
+    {
+        return $this->profilePictureFile;
+    }
+
+    public function setProfilePictureFile(?string $profilePictureFile): static
+    {
+        $this->profilePictureFile = $profilePictureFile;
+
+        return $this;
+    }
+
+ 
 
     
 }
