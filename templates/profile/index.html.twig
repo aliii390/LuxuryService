@@ -118,7 +118,7 @@
 									Photo</span>
 								{# <input id="photo" size="20000000" accept=".pdf,.jpg,.doc,.docx,.png,.gif" name="photo" type="file"> #}
 									{{ form_widget(candidatForm.profilePictureFile) }}
-                        				{{ form_label(candidatForm.profilePictureFile, ) }}
+                        				
 
 										{# finir l'upload de photo #}
 							</div>
@@ -170,12 +170,13 @@
 					<div class="col-xs-12 col-sm-6">
 
 						<div class="card card-panel passport">
-							{# <div class="file-field input-field">
+							<div class="file-field input-field">
 								<div class="btn btn-lg primary waves-effect waves-light">
 									<span>
 										<i class="material-icons">&#xE24D;</i>
 										Passport</span>
-									<input id="passport" size="20000000" accept=".pdf,.jpg,.doc,.docx,.png,.gif" name="passport" type="file">
+								{{ form_widget(candidatForm.passportPictureFile) }}
+                        				{# {{ form_label(candidatForm.passportPictureFile, ) }} #}
 								</div>
 								<div class="existing-file">
 									<a href="#!" target="_blank">
@@ -240,13 +241,13 @@
 			</div>
 		</section>
 
-		{# <section class="section-padding gray-bg">
+		<section class="section-padding gray-bg">
 			<div class="container">
 				<div class="row">
 					<h3 class="text-extrabold">Your K-Yachting account</h3>
 					<div class="col-xs-12 col-sm-4">
 						<div class="input-field">
-							<input required="required" id="email" name="email" type="email" value="">
+							<input  id="email" name="email" type="email" value="">
 							<label for="email">Email</label>
 						</div>
 					</div>
@@ -285,12 +286,8 @@
 				</div>
 
 			</div>
-		</section>  #}
-		<button type="submit" class="btn btn-block btn-lg gradient secondary waves-effect waves-light">
-							<span>
-								<strong>UPDATE</strong>
-								NOW</span>
-						</button>
+		</section> 
+		
 	{{ form_end(candidatForm) }}
 {% endblock %}
 

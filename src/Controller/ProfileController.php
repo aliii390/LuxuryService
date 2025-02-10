@@ -16,7 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 final class ProfileController extends AbstractController
 {
     #[Route('/profile', name: 'app_profile')]
-    public function index(CandidatRepository $candidatRepository, Request $request, EntityManagerInterface $entityManager , FileUploader $fileUploader): Response
+    public function index(CandidatRepository $candidatRepository, Request $request, EntityManagerInterface $entityManager, FileUploader $fileUploader): Response
     {
         if (!$this->getUser()) {
             return $this->redirectToRoute('app_login');
@@ -38,25 +38,40 @@ final class ProfileController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // dd($form);
             if ($candidat->getCreatedAt() === null) {
                 $candidat->setCreatedAt(new \DateTimeImmutable());
-
-
             }
 
-            
             $profilPictureFile = $form->get('profilePictureFile')->getData();
 
-            if($profilPictureFile){
+            if ($profilPictureFile) {
                 $profilPictureName = $fileUploader->upload($profilPictureFile, $candidat, 'profilePictureFile', 'profile_pictures');
                 $candidat->setProfilePictureFile($profilPictureName);
             }
-     
+
+            $passportPictureFile = $form->get('passportPictureFile')->getData();
+            // dd($passportPictureFile);
+
+            if ($passportPictureFile) {
+                $passportPictureName = $fileUploader->upload($passportPictureFile, $candidat, 'passportPictureFile', 'passport_pictures');
+                $candidat->setPassportPictureFile($passportPictureName);
+            }
+
+
+
+
+
+
+
 
             $candidat->setUpdatedAt(new \DateTimeImmutable());
             $entityManager->persist($candidat);
             $entityManager->flush();
+
             $this->addFlash('success', "Your profile has been updated!");
+
+            return $this->redirectToRoute('app_profile');
         }
 
         return $this->render('profile/index.html.twig', [
