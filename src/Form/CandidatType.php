@@ -97,6 +97,25 @@ class CandidatType extends AbstractType
                     'id' => 'photo',
                 ]
             ])
+            ->add('cvPictureFile', FileType::class,[
+                'mapped' => false,
+                'required' => false,
+                'constraints' => [
+                    new File([
+                        'maxSize' => '20M',
+                        'mimeTypes' => [
+                            'image/jpeg',
+                            'image/png',
+                            'image/gif',
+                        ],
+                        'mimeTypesMessage' => 'Please upload a valid Image document',
+                    ])
+                ],
+                'attr' => [
+                    'accept' => '.jpg,.jpeg,.png,.gif',
+                    'id' => 'photo',
+                ]
+            ])
 
         ;
 

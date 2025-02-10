@@ -64,6 +64,9 @@ class Candidat
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $passportPictureFile = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $cvPictureFile = null;
+
     
   
 
@@ -271,6 +274,18 @@ class Candidat
     public function setPassportPictureFile(?string $passportPictureFile): static
     {
         $this->passportPictureFile = $passportPictureFile;
+
+        return $this;
+    }
+
+    public function getCvPictureFile(): ?string
+    {
+        return $this->cvPictureFile;
+    }
+
+    public function setCvPictureFile(?string $cvPictureFile): static
+    {
+        $this->cvPictureFile = $cvPictureFile;
 
         return $this;
     }

@@ -10,6 +10,7 @@
 		.boxshadow{
 			box-shadow: none!important;
 		}
+	
 	</style>
 {% endblock %}
 
@@ -68,6 +69,7 @@
 			<div class="container">
 				<div class="row">
 					<h3 class="text-extrabold">Your personal informations</h3>
+
 					<div class="col-xs-12 col-sm-6 col-md-4">
 					{# gender #}
 						<div class="input-field">
@@ -167,6 +169,7 @@
 				
 				<div class="row mt-40">
 					<h3 class="text-extrabold">Your professional profile</h3>
+					
 					<div class="col-xs-12 col-sm-6">
 
 						<div class="card card-panel passport">
@@ -193,7 +196,7 @@
 									<span>
 										<i class="material-icons">&#xE24D;</i>
 										CV</span>
-									<input id="cv" size="20000000" accept=".pdf,.jpg,.doc,.docx,.png,.gif" name="cv" type="file">
+									{{ form_widget(candidatForm.cvPictureFile) }}
 								</div>
 
 								<div class="existing-file">

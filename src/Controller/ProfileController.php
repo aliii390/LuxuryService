@@ -39,9 +39,14 @@ final class ProfileController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             // dd($form);
+          
+
             if ($candidat->getCreatedAt() === null) {
                 $candidat->setCreatedAt(new \DateTimeImmutable());
             }
+
+
+// pour upload les photo 
 
             $profilPictureFile = $form->get('profilePictureFile')->getData();
 
@@ -58,7 +63,16 @@ final class ProfileController extends AbstractController
                 $candidat->setPassportPictureFile($passportPictureName);
             }
 
+            $cvPictureFile = $form->get('cvPictureFile')->getData();
+            // dd($passportPictureFile);
 
+            if ($cvPictureFile) {
+                $cvPictureFile = $fileUploader->upload($cvPictureFile, $candidat, 'cvPictureFile', 'cv_pictures');
+                $candidat->setcvPictureFile($cvPictureFile);
+            }
+
+
+            // fin du code pour upload les photo 
 
 
 
