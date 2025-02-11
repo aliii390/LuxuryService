@@ -33,15 +33,19 @@ class JobCategory
     #[ORM\Column(length: 255)]
     private ?string $slug  ;
 
+   
+
     public function __construct()
     {
         $this->candidats = new ArrayCollection();
         $this->jobOffers = new ArrayCollection();
+      
     }
 
     public function __toString()
     {
         return $this->name;
+      
     }
 
     public function getId(): ?int
@@ -132,4 +136,8 @@ class JobCategory
 
         return $this;
     }
+
+  
+
+   
 }

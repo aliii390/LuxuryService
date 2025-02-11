@@ -32,6 +32,7 @@ class JobOffer
     private ?string $date = null;
 
 
+
     
 
    
@@ -112,4 +113,6 @@ class JobOffer
 
         return $this;
     }
+
+  
 }
