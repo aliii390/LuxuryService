@@ -80,6 +80,8 @@ class Candidat
     // #[ORM\Column(nullable: true)]
     // private ?\DateTimeImmutable $deletedAt = null;
 
+
+ 
    
 
     public function getId(): ?int
