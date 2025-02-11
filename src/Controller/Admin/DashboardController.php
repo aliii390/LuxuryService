@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\Candidat;
 use App\Entity\Gender;
 use App\Entity\JobCategory;
+use App\Entity\JobOffer;
 use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Attribute\AdminDashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
@@ -59,6 +60,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::section('Candidates');
         yield MenuItem::linkToCrud('Genders', 'fas fa-venus-mars', Gender::class);
         yield MenuItem::linkToCrud('Candidat', 'fas fa-user', Candidat::class);
+        yield MenuItem::linkToCrud('Offre emploi', 'fas fa-user', JobOffer::class);
         
 
         yield MenuItem::section('Category Jobs');
