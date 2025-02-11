@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Entity\JobOffer;
-use App\Repository\JobOfferRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;

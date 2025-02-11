@@ -92,3 +92,7 @@ class UserCrudController extends AbstractCrudController
         };
     }
 }
+
+
+
+// ce code sert a hashez le mot de passe depuis la page admin quand l'admin créer un user depuis la page admin
