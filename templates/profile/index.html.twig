@@ -212,14 +212,15 @@
 						</div>
 					</div> 
 
+					{# job category #}
 					<div class="col-xs-12 col-sm-6">
 						<div class="col-xs-12 col-sm-12">
 							<div class="input-field" style="margin-top: 5px;">
-								<select id="job_sector" name="job_sector[]" multiple data-placeholder="Type in or Select job sector you would be interested in.">
-									<option value="">Choose an option...</option>
-									<option value="">job sector</option>
-								</select>
-								<label for="job_sector" class="active">Interest in job sector</label>
+								{# <select id="job_sector" name="job_sector[]" multiple data-placeholder="Type in or Select job sector you would be interested in."> #}
+										{{ form_widget(candidatForm.jobCategory) }}
+                        		{{ form_label(candidatForm.jobCategory, 'jobCategory') }}
+								{# </select> #}
+								{# <label for="job_sector" class="active">Interest in job sector</label> #}
 							</div>
 						</div>
 

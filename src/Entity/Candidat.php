@@ -67,6 +67,9 @@ class Candidat
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $cvPictureFile = null;
 
+    #[ORM\ManyToOne(inversedBy: 'candidats')]
+    private ?JobCategory $jobCategory = null;
+
     
   
 
@@ -286,6 +289,18 @@ class Candidat
     public function setCvPictureFile(?string $cvPictureFile): static
     {
         $this->cvPictureFile = $cvPictureFile;
+
+        return $this;
+    }
+
+    public function getJobCategory(): ?JobCategory
+    {
+        return $this->jobCategory;
+    }
+
+    public function setJobCategory(?JobCategory $jobCategory): static
+    {
+        $this->jobCategory = $jobCategory;
 
         return $this;
     }

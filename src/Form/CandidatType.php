@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Candidat;
 use App\Entity\Gender;
+use App\Entity\JobCategory;
 use App\Entity\User;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -37,6 +38,19 @@ class CandidatType extends AbstractType
                 'required' => false,
                 'attr' => [
                     'id' => 'gender',
+                ],
+                'label' => 'Gender',
+                'label_attr' => [
+                    'class' => 'active',
+                ],
+                'placeholder' => 'Choose an option...',
+            ])
+            ->add('jobCategory', EntityType::class, [
+                'class' => JobCategory::class,
+                'choice_label' => 'name',
+                'required' => false,
+                'attr' => [
+                    'id' => 'job_sector',
                 ],
                 'label' => 'Gender',
                 'label_attr' => [
