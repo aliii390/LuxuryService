@@ -47,7 +47,7 @@ final class ProfileController extends AbstractController
             }
 
 
-// pour upload les photo 
+// pour upload les photo  voir le code dans service 
 
             $profilPictureFile = $form->get('profilePictureFile')->getData();
 
@@ -90,6 +90,7 @@ final class ProfileController extends AbstractController
         }
 
 
+        //completionRate sert a calculer le pourcentage du profil user
         $completionRate = $completionCalculator->calculateCompletion($candidat);
 
         return $this->render('profile/index.html.twig', [

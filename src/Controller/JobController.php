@@ -2,7 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\JobCategory;
 use App\Entity\JobOffer;
+use App\Repository\JobCategoryRepository;
+use App\Repository\JobOfferRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -10,14 +13,22 @@ use Symfony\Component\Routing\Attribute\Route;
 final class JobController extends AbstractController
 {
     #[Route('/job', name: 'app_job')]
-    public function index(): Response
+    public function index(JobOfferRepository $offreRepository , JobCategoryRepository $jobRepository): Response
     {
+
+        
+        $offres = $offreRepository->findAll();
+        $jobs = $jobRepository->findAll();
+
         return $this->render('job/index.html.twig', [
-         
+            
+            'offre' => $offres,
+          'jobs' => $jobs,
+
         ]);
     }
 
-    #[Route('{id}/job/', name: 'app_job_show')]
+    #[Route('/job/{id}', name: 'app_job_show')]
     public function show(JobOffer $offre): Response
     {
 
