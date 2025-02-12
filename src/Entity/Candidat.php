@@ -6,6 +6,7 @@ use App\Repository\CandidatRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use App\Attribute\ProfileCompletion;
 
 #[ORM\Entity(repositoryClass: CandidatRepository::class)]
 class Candidat
@@ -16,9 +17,11 @@ class Candidat
     private ?int $id = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[ProfileCompletion]
     private ?string $firstname = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[ProfileCompletion]
     private ?string $lastname = null;
 
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
@@ -26,27 +29,35 @@ class Candidat
     private ?User $user = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[ProfileCompletion]
     private ?string $ville = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[ProfileCompletion]
     private ?string $address = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[ProfileCompletion]
     private ?string $birthdate = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[ProfileCompletion]
     private ?string $birthplace = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[ProfileCompletion]
     private ?string $country = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[ProfileCompletion]
     private ?string $nationality = null;
 
     #[ORM\ManyToOne(inversedBy: 'candidats')]
+    #[ProfileCompletion]
     private ?Gender $gender = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[ProfileCompletion]
     private ?string $experience = null;
 
     #[ORM\Column(nullable: true)]
@@ -56,18 +67,23 @@ class Candidat
     private ?\DateTimeImmutable $updatedAt = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[ProfileCompletion]
     private ?string $descritpion = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[ProfileCompletion]
     private ?string $profilePictureFile = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[ProfileCompletion]
     private ?string $passportPictureFile = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[ProfileCompletion]
     private ?string $cvPictureFile = null;
 
     #[ORM\ManyToOne(inversedBy: 'candidats')]
+    #[ProfileCompletion]
     private ?JobCategory $jobCategory = null;
 
     

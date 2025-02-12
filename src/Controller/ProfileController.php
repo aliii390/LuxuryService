@@ -6,6 +6,7 @@ use App\Entity\Candidat;
 use App\Entity\User;
 use App\Form\CandidatType;
 use App\Repository\CandidatRepository;
+use App\Service\CandidatComplet;
 use App\Service\FileUploader;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -16,7 +17,7 @@ use Symfony\Component\Routing\Annotation\Route;
 final class ProfileController extends AbstractController
 {
     #[Route('/profile', name: 'app_profile')]
-    public function index(CandidatRepository $candidatRepository, Request $request, EntityManagerInterface $entityManager, FileUploader $fileUploader): Response
+    public function index(CandidatRepository $candidatRepository, Request $request, EntityManagerInterface $entityManager, FileUploader $fileUploader , CandidatComplet $completionCalculator): Response
     {
         if (!$this->getUser()) {
             return $this->redirectToRoute('app_login');
@@ -88,8 +89,12 @@ final class ProfileController extends AbstractController
             return $this->redirectToRoute('app_profile');
         }
 
+
+        $completionRate = $completionCalculator->calculateCompletion($candidat);
+
         return $this->render('profile/index.html.twig', [
             'candidatForm' => $form->createView(),
+            'completionRate' => $completionRate,
         ]);
     }
 }

@@ -1,27 +1,22 @@
-<?php
+<?php 
 
-namespace App\DTO;
+namespace App\DTO ; 
 
 use Symfony\Component\Validator\Constraints as Assert;
 
-class ContactDTO
-{
-    #[Assert\Email]
-    public string $email = '';
+class ContactDTO{
 
-    #[Assert\NotBlank()]
-    #[Assert\Regex(
-        pattern: '/^\+?[0-9\s\-]{7,15}$/',
-        message: 'Please enter a valid phone number.'
-    )]
-    public string $phone = '';
+    #[Assert\NotBlank]
+    #[Assert\Length(min: 2, max: 50)]
+    public ?string $firstname = null;
 
-    #[Assert\NotBlank()]
-    #[Assert\Length(min: 2, max: 200)]
-    public string $message = '';
+   #[Assert\NotBlank]
+    public ?string $lastname = null;
+    #[Assert\NotBlank]
+    public ?string $email = null;
 
+    public ?string $phone = null;
 
-    public string $prenom = '';
-    public string $nom = '';
-    
+    #[Assert\NotBlank]
+    public ?string $message = null;
 }

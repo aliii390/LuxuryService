@@ -56,9 +56,9 @@
 						<div class="row">
 							<div class="col-md-6">
 								<div class="input-field">
-									{{ form_widget(form.prenom) }}
-									{{ form_label(form.prenom) }}
-									{{ form_errors(form.prenom, {
+									{{ form_widget(form.firstname) }}
+									{{ form_label(form.firstname) }}
+									{{ form_errors(form.firstname, {
 										'attr': {
 											'class': 'form-error'
 										}
@@ -67,9 +67,9 @@
 							</div>
 							<div class="col-md-6">
 								<div class="input-field">
-									{{ form_widget(form.nom) }}
-									{{ form_label(form.nom) }}
-									{{ form_errors(form.nom, {
+									{{ form_widget(form.lastname) }}
+									{{ form_label(form.lastname) }}
+									{{ form_errors(form.lastname, {
 										'attr': {
 											'class': 'form-error'
 										}
@@ -142,7 +142,7 @@
 							<i class="material-icons brand-color">&#xE0E1;</i>
 							<div class="mail">
 								<p>
-									<a href="#!">support[a]luxuryservices.com</a>
+									<a href="#!">support@luxuryservices.com</a>
 								</p>
 							</div>
 						</address>
@@ -152,19 +152,19 @@
 		</section>
 		{{ form_end(form) }}
        
-     <div id="map" style="height: 350px;">
+     <div id="map" style="height: 350px; ">
     
     
                 
 <script>
     document.addEventListener("DOMContentLoaded", function () {
-        var map = L.map('map').setView([45.4386, 4.3871], 15); // Zoom niveau 15
+        var map = L.map('map').setView([45.4378103,4.381062], 40); // Zoom niveau 15
 
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '© OpenStreetMap contributors'
         }).addTo(map);
 
-        L.marker([45.4386, 4.3871]).addTo(map)
+        L.marker([45.4378103,4.381062]).addTo(map)
             .bindPopup('Bienvenue les boloss')
             .openPopup();
     });
