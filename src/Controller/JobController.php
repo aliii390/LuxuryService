@@ -7,14 +7,19 @@ use App\Entity\JobOffer;
 use App\Repository\JobCategoryRepository;
 use App\Repository\JobOfferRepository;
 use App\Repository\TypeContratRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
 final class JobController extends AbstractController
 {
     #[Route('/job', name: 'app_job')]
-    public function index(JobOfferRepository $offreRepository , JobCategoryRepository $jobRepository , TypeContratRepository $contrat): Response
+    public function index(JobOfferRepository $offreRepository , 
+    JobCategoryRepository $jobRepository , 
+    TypeContratRepository $contrat , 
+    PaginatorInterface $paginator , Request $request): Response
     {
 
         
@@ -22,9 +27,15 @@ final class JobController extends AbstractController
         $jobs = $jobRepository->findAll();
         $typeContrat = $contrat->findAll();
 
+        $pagination = $paginator->paginate(
+            $offres, /* query NOT result */
+            $request->query->getInt('page', 1), /*page number*/
+            3 /*limit per page*/
+        );
+
         return $this->render('job/index.html.twig', [
             
-            'offre' => $offres,
+            'offre' => $pagination,
           'jobs' => $jobs,
           'contrat' => $typeContrat
 

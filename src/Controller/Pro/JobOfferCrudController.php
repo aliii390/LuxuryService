@@ -5,8 +5,6 @@ namespace App\Controller\Pro;
 use App\Entity\JobOffer;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
 class JobOfferCrudController extends AbstractCrudController
@@ -25,6 +23,7 @@ class JobOfferCrudController extends AbstractCrudController
             TextField::new('Location'),
             TextField::new('Salaire'),
             TextField::new('description'),
+            TextField::new('date'),
             AssociationField::new('jobCategory'),
             AssociationField::new('contrat'),
         ];
