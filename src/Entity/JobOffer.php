@@ -31,6 +31,9 @@ class JobOffer
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $date = null;
 
+    #[ORM\ManyToOne(inversedBy: 'jobOffers')]
+    private ?TypeContrat $contrat = null;
+
 
 
     
@@ -110,6 +113,18 @@ class JobOffer
     public function setDate(?string $date): static
     {
         $this->date = $date;
+
+        return $this;
+    }
+
+    public function getContrat(): ?TypeContrat
+    {
+        return $this->contrat;
+    }
+
+    public function setContrat(?TypeContrat $contrat): static
+    {
+        $this->contrat = $contrat;
 
         return $this;
     }

@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\JobCategory;
 use App\Entity\JobOffer;
+use App\Entity\TypeContrat;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -17,6 +18,10 @@ class OffreType extends AbstractType
             ->add('description')
             ->add('jobCategory', EntityType::class, [
                 'class' => JobCategory::class,
+                'choice_label' => 'id',
+            ])
+            ->add('contrat' , EntityType::class , [
+                'class' => TypeContrat::class,
                 'choice_label' => 'id',
             ])
         ;

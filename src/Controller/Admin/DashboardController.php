@@ -6,6 +6,7 @@ use App\Entity\Candidat;
 use App\Entity\Gender;
 use App\Entity\JobCategory;
 use App\Entity\JobOffer;
+use App\Entity\TypeContrat;
 use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Attribute\AdminDashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
@@ -63,8 +64,9 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Offre emploi', 'fas fa-user', JobOffer::class);
         
 
-        yield MenuItem::section('Category Jobs');
+        yield MenuItem::section('Category Jobs and Contrat Type');
         yield MenuItem::linkToCrud('jobCategory', 'fas fa-venus-mars', JobCategory::class);
+        yield MenuItem::linkToCrud('Contrat type', 'fas fa-venus-mars', TypeContrat::class);
         
         yield MenuItem::section('Recruters');
         yield MenuItem::linkToCrud('Recruters', 'fas fa-user-tie', User::class);
