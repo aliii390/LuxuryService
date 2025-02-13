@@ -34,6 +34,9 @@ class JobOffer
     #[ORM\ManyToOne(inversedBy: 'jobOffers')]
     private ?TypeContrat $contrat = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $companyname = null;
+
 
 
     
@@ -125,6 +128,18 @@ class JobOffer
     public function setContrat(?TypeContrat $contrat): static
     {
         $this->contrat = $contrat;
+
+        return $this;
+    }
+
+    public function getCompanyname(): ?string
+    {
+        return $this->companyname;
+    }
+
+    public function setCompanyname(?string $companyname): static
+    {
+        $this->companyname = $companyname;
 
         return $this;
     }

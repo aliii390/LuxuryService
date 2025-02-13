@@ -29,7 +29,7 @@ final class JobController extends AbstractController
 
         $pagination = $paginator->paginate(
             $offres, /* query NOT result */
-            $request->query->getInt('page', 1), /*page number*/
+            $request->query->getInt('page', 4), /*page number*/
             3 /*limit per page*/
         );
 
