@@ -38,6 +38,13 @@ class Candidature
         $this->updatedAt = new DateTimeImmutable();
     }
 
+    // public function __toString()
+    // {
+    //     return $this->createdAt;
+    //     return $this->updatedAt;
+    //     return $this->deletedAt;
+    // }
+
     public function getId(): ?int
     {
         return $this->id;

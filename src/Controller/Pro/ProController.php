@@ -2,6 +2,7 @@
 
 namespace App\Controller\Pro;
 
+use App\Entity\Candidature;
 use App\Entity\JobOffer;
 use EasyCorp\Bundle\EasyAdminBundle\Attribute\AdminDashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
@@ -53,5 +54,8 @@ class ProController extends AbstractDashboardController
 
         yield MenuItem::section("Postez Offre d'emploi");
         yield MenuItem::linkToCrud('Offre emploi', 'fas fa-user', JobOffer::class);
+
+        yield MenuItem::section("Voir Les candidatures");
+        yield MenuItem::linkToCrud('Candidature', 'fas fa-user', Candidature::class);
     }
 }

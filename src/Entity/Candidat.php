@@ -98,6 +98,11 @@ class Candidat
     }
 
     
+
+    public function __toString()
+    {
+        return $this->firstname;
+    }
   
 
 

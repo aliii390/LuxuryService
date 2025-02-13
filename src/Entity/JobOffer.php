@@ -52,6 +52,11 @@ class JobOffer
 
 
 
+    public function __toString()
+    {
+        return $this->name;
+    }
+
     
 
    
