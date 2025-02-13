@@ -2,11 +2,16 @@
 
 namespace App\Controller;
 
+use App\Entity\Candidature;
 use App\Entity\JobCategory;
 use App\Entity\JobOffer;
+use App\Repository\CandidatRepository;
 use App\Repository\JobCategoryRepository;
 use App\Repository\JobOfferRepository;
 use App\Repository\TypeContratRepository;
+use App\Service\CandidatComplet;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -19,7 +24,9 @@ final class JobController extends AbstractController
     public function index(JobOfferRepository $offreRepository , 
     JobCategoryRepository $jobRepository , 
     TypeContratRepository $contrat , 
-    PaginatorInterface $paginator , Request $request): Response
+    PaginatorInterface $paginator , Request $request , 
+    CandidatRepository $candidatRepository , EntityManagerInterface $entityManager , CandidatComplet $completionCalculator
+    ): Response
     {
 
         
@@ -27,17 +34,34 @@ final class JobController extends AbstractController
         $jobs = $jobRepository->findAll();
         $typeContrat = $contrat->findAll();
 
+
+
+            /** 
+         * @var User $user
+         */
+        $user = $this->getUser();
+        $candidate = $candidatRepository->findOneBy(['user' => $user->getId()]);
+
+
+
         $pagination = $paginator->paginate(
             $offres, /* query NOT result */
-            $request->query->getInt('page', 4), /*page number*/
-            3 /*limit per page*/
+            $request->query->getInt('page', 1), /*page number*/
+            2 /*limit per page*/
         );
 
+
+        $existingCandidatures = $entityManager->getRepository(Candidature::class)->findBy(['candidat' => $candidate]);
+        $completionRate = $completionCalculator->calculateCompletion($candidate);
+        // dd($existingCandidatures);
         return $this->render('job/index.html.twig', [
             
             'offre' => $pagination,
           'jobs' => $jobs,
-          'contrat' => $typeContrat
+          'contrat' => $typeContrat,
+          'existingCandidatures' => $existingCandidatures,
+          'completionRate' => $completionRate,
+
 
         ]);
     }
