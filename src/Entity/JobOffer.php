@@ -45,6 +45,9 @@ class JobOffer
     #[ORM\OneToMany(targetEntity: Candidature::class, mappedBy: 'offreEmploi')]
     private Collection $candidatures;
 
+    #[ORM\ManyToOne(inversedBy: 'offreEmplois')]
+    private ?Client $client = null;
+
     public function __construct()
     {
         $this->candidatures = new ArrayCollection();
@@ -188,6 +191,18 @@ class JobOffer
                 $candidature->setOffreEmploi(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getClient(): ?Client
+    {
+        return $this->client;
+    }
+
+    public function setClient(?Client $client): static
+    {
+        $this->client = $client;
 
         return $this;
     }

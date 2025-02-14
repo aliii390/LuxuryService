@@ -3,6 +3,7 @@
 namespace App\Controller\Pro;
 
 use App\Entity\Candidature;
+use App\Entity\Client;
 use App\Entity\JobOffer;
 use EasyCorp\Bundle\EasyAdminBundle\Attribute\AdminDashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
@@ -49,13 +50,38 @@ class ProController extends AbstractDashboardController
 
     public function configureMenuItems(): iterable
     {
-        yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
-        // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
 
-        yield MenuItem::section("Postez Offre d'emploi");
-        yield MenuItem::linkToCrud('Offre emploi', 'fas fa-user', JobOffer::class);
+    /**
+         * @var User $user
+         */
+        $user = $this->getUser();
+        $roles = $user->getRoles();
 
-        yield MenuItem::section("Voir Les candidatures");
-        yield MenuItem::linkToCrud('Candidature', 'fas fa-user', Candidature::class);
+        if(in_array('ROLE_PRO' , $roles)){
+            yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
+            // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
+
+            yield MenuItem::section("Compte");
+            yield MenuItem::linkToCrud('Profil', 'fas fa-user', Client::class);
+    
+            yield MenuItem::section("Postez Offre d'emploi");
+            yield MenuItem::linkToCrud('Offre emploi', 'fas fa-user', JobOffer::class);
+
+            // ->setEntityId($user->getId());
+    
+            yield MenuItem::section("Voir Les candidatures");
+            yield MenuItem::linkToCrud('Candidature', 'fas fa-user', Candidature::class);
+
+        }
+
+
+
+
+      
     }
+
+
+
+
+    
 }
