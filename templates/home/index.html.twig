@@ -218,11 +218,11 @@
                                         {% endfor %}
                                         {% if completionRate < 100 %}
 
-                                            <a class="btn btn-md primary waves-effect waves-light" href="{{ path('app_candidate_new') }}">You need to finish your profile</a>
+                                            <a class="btn btn-md primary waves-effect waves-light" href="{{ path('app_profile') }}">finish your profile</a>
                                         {% elseif hasApplied %}                                    
 
                                         
-                                            <a class="btn btn-success waves-effect waves-light" href="#">You have already applied</a>
+                                            <a class="btn btn-success waves-effect waves-light" href="#">You applied for this</a>
                                         {% else %}
                                             <a class="btn btn-md primary waves-effect waves-light" href="{{ path('candidature_postuler', {id: offer.id} ) }}">Apply</a>
                                         {% endif %}

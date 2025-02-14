@@ -9,7 +9,7 @@ use App\Repository\JobCategoryRepository;
 use App\Repository\JobOfferRepository;
 use App\Service\CandidatComplet;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+  use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
@@ -24,13 +24,24 @@ final class HomeController extends AbstractController
          * @var User $user
          */
         $user = $this->getUser();
-        $candidate = $candidatRepository->findOneBy(['user' => $user->getId()]);
+        
+        if($user){
+          $candidate = $candidatRepository->findOneBy(['user' => $user->getId()]);
+          $existingCandidatures = $entityManager->getRepository(Candidature::class)->findBy(['candidat' => $candidate]);
+          $completionRate = $completionCalculator->calculateCompletion($candidate);
+  
+        }else{
+           $existingCandidatures = [];
+           $completionRate = 0;
+        }
+
+        
+
+
 
         $offres = $offreRepository->findAll();
         $jobs = $jobRepository->findAll();
-        $existingCandidatures = $entityManager->getRepository(Candidature::class)->findBy(['candidat' => $candidate]);
-        $completionRate = $completionCalculator->calculateCompletion($candidate);
-
+     
       
         return $this->render('home/index.html.twig', [
           'offre' => $offres,
