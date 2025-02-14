@@ -32,6 +32,9 @@ class Candidature
     #[ORM\ManyToOne(inversedBy: 'candidatures')]
     private ?JobOffer $offreEmploi = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $status = null;
+
     public function __construct()
     {
         $this->createdAt = new DateTimeImmutable();
@@ -121,6 +124,18 @@ class Candidature
     public function setOffreEmploi(?JobOffer $offreEmploi): static
     {
         $this->offreEmploi = $offreEmploi;
+
+        return $this;
+    }
+
+    public function getStatus(): ?string
+    {
+        return $this->status;
+    }
+
+    public function setStatus(?string $status): static
+    {
+        $this->status = $status;
 
         return $this;
     }
