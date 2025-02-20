@@ -5,9 +5,11 @@ namespace App\Controller;
 use App\Entity\Candidat;
 use App\Entity\User;
 use App\Form\CandidatType;
+use App\Interfaces\PasswordUpdaterInterface;
 use App\Repository\CandidatRepository;
 use App\Service\CandidatComplet;
 use App\Service\FileUploader;
+use App\Service\PasswordUpdater;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,7 +19,8 @@ use Symfony\Component\Routing\Annotation\Route;
 final class ProfileController extends AbstractController
 {
     #[Route('/profile', name: 'app_profile')]
-    public function index(CandidatRepository $candidatRepository, Request $request, EntityManagerInterface $entityManager, FileUploader $fileUploader , CandidatComplet $completionCalculator): Response
+    public function index(CandidatRepository $candidatRepository, Request $request, EntityManagerInterface $entityManager, FileUploader $fileUploader
+     , CandidatComplet $completionCalculator , PasswordUpdaterInterface $passwordUpdater): Response
     {
         if (!$this->getUser()) {
             return $this->redirectToRoute('app_login');
@@ -76,6 +79,19 @@ final class ProfileController extends AbstractController
             // fin du code pour upload les photo 
 
 
+            // code pour update le password
+
+
+            $email = $form->get('email')->getData();
+            $newPassword = $form->get('newPassword')->getData();
+
+            if ($email && $newPassword) {
+                $passwordUpdater->updatePassword($user, $email, $newPassword);
+            } elseif ($email || $newPassword) {
+                $this->addFlash('danger', 'Email and password must be filled together to change password.');
+            }
+
+            // fin du code
 
 
 
