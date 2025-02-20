@@ -15,6 +15,7 @@ use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\File;
@@ -174,9 +175,14 @@ class CandidatType extends AbstractType
                     ]),
                 ],
             ])
-            // ->addEventListener(FormEvents::POST_SUBMIT, $this->setUpdatedAt(...))
+            ->addEventListener(FormEvents::POST_SUBMIT, $this->setUpdatedAt(...))
 
         ;
+
+
+
+
+        
 
     }
 
@@ -185,6 +191,13 @@ class CandidatType extends AbstractType
         $resolver->setDefaults([
             'data_class' => Candidat::class,
         ]);
+    }
+
+    private function setUpdatedAt(FormEvent $event): void
+    {
+        $candidate = $event->getData();
+
+        $candidate->setUpdatedAt(new \DateTimeImmutable());
     }
 
     
