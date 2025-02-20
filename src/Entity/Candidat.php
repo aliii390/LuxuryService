@@ -92,6 +92,9 @@ class Candidat
     #[ORM\OneToMany(targetEntity: Candidature::class, mappedBy: 'candidat')]
     private Collection $candidatures;
 
+    #[ORM\Column(nullable: true)]
+    private ?\DateTimeImmutable $deleteAt = null;
+
     public function __construct()
     {
         $this->candidatures = new ArrayCollection();
@@ -365,6 +368,18 @@ class Candidat
                 $candidature->setCandidat(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getDeleteAt(): ?\DateTimeImmutable
+    {
+        return $this->deleteAt;
+    }
+
+    public function setDeleteAt(?\DateTimeImmutable $deleteAt): static
+    {
+        $this->deleteAt = $deleteAt;
 
         return $this;
     }

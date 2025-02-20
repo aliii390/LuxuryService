@@ -158,14 +158,14 @@
                 
 <script>
     document.addEventListener("DOMContentLoaded", function () {
-        var map = L.map('map').setView([45.4378103,4.381062], 40); // Zoom niveau 15
+        var map = L.map('map').setView([45.4378103,4.381062], 100); // Zoom niveau 15
 
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '© OpenStreetMap contributors'
         }).addTo(map);
 
         L.marker([45.4378103,4.381062]).addTo(map)
-            .bindPopup('Bienvenue les boloss')
+            .bindPopup('Nous sommes situer ici')
             .openPopup();
     });
 </script>

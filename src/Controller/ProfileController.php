@@ -30,6 +30,7 @@ final class ProfileController extends AbstractController
          * @var User $user
          */
         $user = $this->getUser();
+       
 
         $candidat = $candidatRepository->findOneBy(['user' => $user]);
 
@@ -112,6 +113,33 @@ final class ProfileController extends AbstractController
         return $this->render('profile/index.html.twig', [
             'candidatForm' => $form->createView(),
             'completionRate' => $completionRate,
+            'candidat' => $candidat
         ]);
+    }
+
+
+
+
+    #[Route('/profile/delete/{id}', name: 'app_profile_delete')]
+    public function delete(
+        Candidat $candidat,
+        EntityManagerInterface $entityManager,
+        CandidatRepository $candidatRepository
+    ): Response {
+        // verifie si la personne qui supprime est celle qui est connecté
+        /** @var User */
+        $user = $this->getUser();
+        $candidatUserConnected = $candidatRepository->findOneBy(['user' => $user]);
+        if ($candidatUserConnected !== $candidat) {
+            $this->addFlash('danger', 'You are not allowed to delete this profile!, the admin will be informed of this action.');
+
+            return $this->redirectToRoute('app_profile');
+        }
+
+        $candidat->setDeleteAt(new \DateTimeImmutable());
+        $user->setRoles(['ROLE_DELETED']);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('app_logout');
     }
 }
